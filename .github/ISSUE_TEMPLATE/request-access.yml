@@ -1,0 +1,32 @@
+name: Request access
+description: Ask for read-only access to the private ColdSpot repository
+title: "Access request"
+labels: ["access-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in ColdSpot! Fill this in and I'll review it.
+        You'll be added as a **read-only** collaborator (clone + run, no push).
+  - type: input
+    id: github-username
+    attributes:
+      label: Your GitHub username
+      description: The account that should get read access — usually the one you're filing this from.
+      placeholder: e.g. octocat
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: What do you want to try it for?
+      description: A line or two about why you're interested (optional).
+    validations:
+      required: false
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: Acknowledgement
+      options:
+        - label: I understand this is educational / experimental developer material.
+          required: true
