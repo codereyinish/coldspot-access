@@ -1,0 +1,22 @@
+name: Assign access requests
+
+# When anyone opens an issue here (the repo's only purpose is access requests),
+# auto-assign it to the owner so every request lands in one inbox:
+# github.com/issues → "Assigned to me" — and fires an assignment notification.
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign the issue to the owner
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          NUM: ${{ github.event.issue.number }}
+        run: gh issue edit "$NUM" --repo "$REPO" --add-assignee codereyinish
